@@ -14,6 +14,18 @@
     <button id="stop-btn" disabled>Stop Recording</button>
     <button id="save-btn" disabled>Save Recording</button>
     <audio id="recorded-audio" controls></audio>
+
+    <div class="container">
+        <h1> Video Recorder</h1>
+        <video id="videoPreview" autoplay></video>
+        <div class="controls">
+            <button id="startRecording" class="button start">🔴 Start Recording</button>
+            <button id="stopRecording" class="button stop" disabled>⏹️ Stop Recording</button>
+        </div>
+        <a id="downloadLink" class="download-link" style="display: none;">⬇️ Download Video</a>
+    </div>
+
+
 <script src="main.js"></script>
     </body>
 </html>

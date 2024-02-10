@@ -53,3 +53,53 @@ saveBtn.addEventListener("click", () => {
     window.URL.revokeObjectURL(url);
   }, 100);
 });
+
+const videoPreview = document.getElementById("videoPreview");
+const startRecordingButton = document.getElementById("startRecording");
+const stopRecordingButton = document.getElementById("stopRecording");
+const downloadLink = document.getElementById("downloadLink");
+
+let mediaRecorder;
+let recordedChunks = [];
+
+startRecordingButton.addEventListener("click", startRecording);
+stopRecordingButton.addEventListener("click", stopRecording);
+
+async function startRecording() {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+
+        videoPreview.srcObject = stream;
+        mediaRecorder = new MediaRecorder(stream);
+
+        mediaRecorder.ondataavailable = (event) => {
+            if (event.data.size > 0) {
+                recordedChunks.push(event.data);
+            }
+        };
+
+        mediaRecorder.onstop = () => {
+            const videoBlob = new Blob(recordedChunks, { type: "video/webm" });
+            recordedChunks = [];
+
+            const videoURL = URL.createObjectURL(videoBlob);
+            downloadLink.href = videoURL;
+            downloadLink.style.display = "block";
+            downloadLink.download = "recorded-video.webm";
+        };
+
+        mediaRecorder.start();
+        startRecordingButton.disabled = true;
+        stopRecordingButton.disabled = false;
+    } catch (error) {
+        console.error("Error starting recording:", error);
+    }
+}
+
+function stopRecording() {
+    if (mediaRecorder && mediaRecorder.state === "recording") {
+        mediaRecorder.stop();
+        startRecordingButton.disabled = false;
+        stopRecordingButton.disabled = true;
+    }
+}
