@@ -3,7 +3,7 @@ const stopBtn = document.getElementById("stop-btn");
 const saveBtn = document.getElementById("save-btn");
 const recordedAudio = document.getElementById("recorded-audio");
 
-let mediaRecorder;
+
 let recordedBlobs;
 
 startBtn.addEventListener("click", () => {
