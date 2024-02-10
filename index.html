@@ -3,29 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Audio Recorder</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    
-    <h1>Audio Recorder</h1>
-    <button id="start-btn">Start Recording</button>
-    <button id="stop-btn" disabled>Stop Recording</button>
-    <button id="save-btn" disabled>Save Recording</button>
-    <audio id="recorded-audio" controls></audio>
-
     <div class="container">
-        <h1> Video Recorder</h1>
-        <video id="videoPreview" autoplay></video>
-        <div class="controls">
-            <button id="startRecording" class="button start">🔴 Start Recording</button>
-            <button id="stopRecording" class="button stop" disabled>⏹️ Stop Recording</button>
-        </div>
-        <a id="downloadLink" class="download-link" style="display: none;">⬇️ Download Video</a>
+        <h1>Audio Recorder</h1>
+        <button id="startRecording">Start Recording</button>
+        <button id="stopRecording" disabled>Stop Recording</button>
+        <button id="playRecording" disabled>Play Recording</button>
+        <audio controls id="audioPlayer"></audio>
     </div>
 
-
-<script src="main.js"></script>
-    </body>
+    <script src="main.js"></script>
+</body>
 </html>
